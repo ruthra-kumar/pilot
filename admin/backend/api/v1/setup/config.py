@@ -11,7 +11,7 @@ from pilot.config.country import COUNTRIES
 from pilot.internal.validators import validate_branch_name, validate_repo_url
 
 _PASSWORD_KEYS = ("admin_password", "mariadb_password", "postgres_password")
-_DB_ENGINES = ("mariadb", "postgres")
+_DB_ENGINES = ("mariadb", "postgres", "sqlite")
 
 SETTABLE_KEYS = frozenset(
     {
@@ -76,8 +76,8 @@ def _validate_field_types(data: dict) -> str | None:
 def _validate_required_fields(data: dict) -> str | None:
     """The error when a required field is missing, or None."""
     db_type = data.get("db_type", "mariadb")
-    if db_type not in ("mariadb", "postgres"):
-        return "db_type must be 'mariadb' or 'postgres'"
+    if db_type not in ("mariadb", "postgres", "sqlite"):
+        return "db_type must be 'mariadb', 'postgres' or 'sqlite'"
     if db_type == "mariadb" and not data.get("mariadb_password"):
         return "mariadb_password is required"
     if db_type == "postgres" and not data.get("postgres_password"):

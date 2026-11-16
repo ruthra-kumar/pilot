@@ -23,6 +23,7 @@ const generateRandomPassword = (length = 32) => {
 const DB_TYPE_OPTIONS = [
   { label: 'MariaDB', value: 'mariadb' },
   { label: 'PostgreSQL', value: 'postgres' },
+  { label: 'SQLite', value: 'sqlite' },
 ]
 const STEP_TITLES: Record<string, string> = {
   database: 'Database',
